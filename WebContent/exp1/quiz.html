@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>企业调查问卷</title>
+    <style>
+        #main {
+            border: 1px solid black;
+            margin: auto 250px;
+            background-color:rgb(249, 248, 238);
+
+        }
+
+        h1 {
+            margin-top: 70px;
+            margin-bottom: 70px;
+        }
+
+        input {
+            background-color: rgb(249, 248, 238);
+            border: none;
+            border-bottom: 1px solid black;
+            outline-style: none;
+            margin: 8px;
+        }
+
+        li {
+            margin: 10px;
+        }
+    </style>
+    <script>
+        function check(name, n) {
+            let arr = document.getElementsByName(name);
+            let a = 0;
+            for (let i = 0; i < arr.length; i++) {
+                if (arr[i].checked) {
+                    a++;
+                }
+            }
+            if (a == n) {
+                for (let i = 0; i < arr.length; i++) {
+                    if (!arr[i].checked) {
+                        arr[i].disabled = 'disabled';
+                    }
+                }
+            } else {
+                for (let i = 0; i < arr.length; i++) {
+                    arr[i].removeAttribute('disabled');
+                }
+            }
+        }
+
+    </script>
+</head>
+
+<body>
+    <div id="main">
+        <h1 style="text-align:center;">企业电子商务调查问卷</h1>
+        <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;尊敬的先生/女士：</p>
+        <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;您好！为了了解目前企业开展电子商务的状况和问题，我们课题组希望您能协助填写这份调查表。在此，我们郑重承诺，调查结果仅供研究使用。如果您有兴趣和需要，我们可以将最终的统计和分析结果通过电子邮件的方式反馈给您。
+        </p>
+        <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;本次调查对于电子商务的界定是：通过计算机网络完成的购买和销售货物以及服务的行为，这些货物或服务的订单是通过相关网络下达的，但是支付和物流可以是网下进行的。通过传真、电话和电子邮件达成的交易不算在内。
+        </p>
+        <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;非常感谢您的大力支持！</p>
+        <p style="text-align: right;">广东省电子商务发展规划前期研究课题组</p>
+        <hr>
+        <form action="">
+            <ul style="list-style-type: none;">
+                <h3></h3>
+                <li>1.企业名称：
+                    <input type="text">
+                    注册地：
+                    <input type="text">
+                </li>
+                <li>2.您所在企业的职务：<input type="text"></li>
+                <li>3.企业成立时间：<input type="text"></li>
+                <li>4.企业所在行业：<input type="text"></li>
+                <li style="text-decoration-line: underline">以下选择题，若无特别声明，皆为多选题</li>
+                <li>5.您所在企业的所有制形式<br>
+                    <input type="radio" name="1">国有
+                    <input type="radio" name="1">集体
+                    <input type="radio" name="1">民营
+                    <input type="radio" name="1">外资
+                </li>
+                <li onclick="check('item',4)">6.您所在的企业最需要的信息包括（选择其中最重要的四项）<br>
+                    <input type="checkbox" name="item" value="1">产品开发
+                    <input type="checkbox" name="item" value="2">生产技术
+                    <input type="checkbox" name="item" value="3">技术引进
+                    <input type="checkbox" name="item" value="4">市场行情<br>
+                    <input type="checkbox" name="item" value="5">竞争对手
+                    <input type="checkbox" name="item" value="6">政策法规
+                    <input type="checkbox" name="item" value="7">薪酬水平
+                    <input type="checkbox" name="item" value="8">人才信息
+                </li>
+            </ul>
+        </form>
+    </div>
+</body>
+
+</html>

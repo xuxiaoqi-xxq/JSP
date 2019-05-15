@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>用户注册</title>
+    <style>
+        section {
+            margin: auto;
+            border: 1px solid black;
+            background-color: snow;
+            height: 445px;
+            width: 694px;
+        }
+
+        body {
+            padding: 0px;
+            font-size: 9pt;
+        }
+
+        img {
+            display: block;
+        }
+
+        #left {
+            float: left;
+        }
+
+        #right {
+            float: right;
+        }
+
+        aside {
+            width: 170px;
+            float: left;
+            border-right: 1px solid green;
+            padding-right: 5px
+        }
+
+        aside p {
+            text-align: center;
+            margin-bottom: 2px;
+        }
+
+        #core {
+            float: left;
+        }
+
+        #core ul {
+            list-style: none;
+            margin-top: 40px;
+        }
+
+        #core li {
+            padding: 5px;
+        }
+
+        span {
+            color: red;
+            font-size: 13px;
+        }
+    </style>
+    <script>
+        /*提交时检测*/
+        function check(form) {
+            if (checkUname(form)) {
+                if (checkPwd(form)) {
+                    if (form.rpwd.value == form.pwd.value) {
+                        if (checkEmail(form)) {
+                            alert("注册成功");
+                            return true;
+                        } else {
+                            alert("email格式错误");
+                            return false;
+                        }
+                    } else {
+                        alert("两次输入密码不一致");
+                        return false;
+                    }
+                } else {
+                    alert("密码格式错误");
+                    return false;
+                }
+            } else {
+                alert("用户名格式错误");
+                return false;
+            }
+        }
+        function checkUname(form) {
+            return new RegExp(/^(\w){3,20}$/).test(form.uname.value);
+        }
+        function checkPwd(form) {
+            return new RegExp(/^(\w){6,20}$/).test(form.pwd.value);
+        }
+        function checkEmail(form) {
+            return new RegExp(/^(\w)+\@(\w)+\.(\w)+$/).test(form.email.value);
+        }
+
+        /*输入时检测*/
+        function checkUnames(uname,unametip){
+            let name = document.getElementById(uname).value;
+            let tip = document.getElementById(unametip);
+            if(!new RegExp(/^(\w){3,20}$/).test(name)){
+                tip.innerText='用户名长度在3-20字符内';
+            }else{
+                tip.innerText='';
+            }
+        }
+        function checkPwds(upwd,upwdtip){
+            let pwd = document.getElementById(upwd).value;
+            let tip = document.getElementById(upwdtip);
+            if(!new RegExp(/^(\w){6,20}$/).test(pwd)){
+                tip.innerText='密码长度在6-20字符内';
+            }else{
+                tip.innerText='';
+            }
+        }
+        function checkRpwds(upwd,urpwd,urpwdtip){
+            let pwd = document.getElementById(upwd).value;
+            let rpwd = document.getElementById(urpwd).value;
+            let tip = document.getElementById(urpwdtip);
+            if(pwd != rpwd){
+                tip.innerText='两次输入密码不一致';
+            }else{
+                tip.innerText='';
+            }
+        }
+        function checkEmails(uemail,uemailtip){
+            let email = document.getElementById(uemail).value;
+            let tip = document.getElementById(uemailtip);
+            if(!new RegExp(/^(\w)+\@(\w)+\.(\w)+$/).test(email)){
+                tip.innerText='邮箱格式不正确';
+            }else{
+                tip.innerText='';
+            }
+        }
+    </script>
+</head>
+
+<body>
+    <section>
+        <div id="top">
+            <img src="images/01.gif" width="694px" height="168px">
+        </div>
+        <div id="left">
+            <img src="images/02.gif" width="35px" height="100px">
+        </div>
+        <aside>
+            <img src="images/reg.gif" width="84px" height="54px">
+            <ul>
+                <p><b>注册帮助</b></p>
+                <li>会员名：为会员登录网站的通行证，长度控制在3-20个字符之内。</li>
+                <li>密码：请设定在6-20个字符之间。</li>
+                <li>确认密码：两次输入密码必须一致。</li>
+                <li>Email：请填写有效的email 地址，以便于与您联系。</li>
+            </ul>
+        </aside>
+        <div id="core">
+            <form action="quiz.html" method="POST" onsubmit="return check(this)">
+                <ul>
+                    <li>用&nbsp;户&nbsp;名&nbsp;
+                        <input type="text" id="uname" size="23" oninput="checkUnames('uname','unametip')" required>
+                        <span id="unametip"></span>
+                    </li>
+                    <li>密&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;码
+                        <input type="password" id="pwd" size="23" oninput="checkPwds('pwd','pwdtip')" required>
+                        <span id="pwdtip"></span>
+                    </li>
+                    <li>确认密码
+                        <input type="password" id="rpwd" size="23" oninput="checkRpwds('pwd','rpwd','rpwdtip')" required>
+                        <span id="rpwdtip"></span>
+                    </li>
+                    <li>性&nbsp;&nbsp;&nbsp;&nbsp;别&nbsp;&nbsp;&nbsp;&nbsp;
+                        <input type="radio" name="sex" checked>男
+                        <input type="radio" name="sex">女
+                    </li>
+                    <li>E-mail&nbsp;&nbsp;
+                        <input type="email" id="email" size="23" oninput="checkEmails('email','emailtip')" required>
+                        <span id="emailtip"></span>
+                    </li>
+                    <li>
+                        <input type="submit" value="提交">
+                        <input type="reset" value="重置">
+                    </li>
+                </ul>
+            </form>
+        </div>
+        <div id="right">
+            <img src="images/04.gif" width="44px" height="100px">
+        </div>
+    </section>
+</body>
+
+</html>
